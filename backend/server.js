@@ -7,11 +7,11 @@ const cors = require("cors");
 const app = express()
 
 // middleware
-const corsOptions = {
-    origin: "http://localhost:3000" // frontend URI (ReactJS)
-}
+// const corsOptions = {
+//     origin: "http://localhost:3000" // frontend URI (ReactJS)
+// }
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 app.use((req, res, next) => {
