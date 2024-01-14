@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
+import API_BASE_URL from "../config"
 
 const WorkoutForm = () => {
     const {dispatch} = useWorkoutsContext()

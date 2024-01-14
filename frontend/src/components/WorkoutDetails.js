@@ -1,6 +1,7 @@
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import API_BASE_URL from "../config";
 
 const WorkoutDetails = ({workout}) => {
 
