@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 import { useAuthContext } from "../hooks/useAuthContext";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import API_BASE_URL from "../config";
+import { Link } from "react-router-dom"
 
 const WorkoutDetails = ({workout}) => {
     const {dispatch} = useWorkoutsContext();
     const {user} = useAuthContext();
+    const [isHovered, setIsHovered] = useState(false)
+
     const handleClick = async () => {
         if (!user) {
             return
@@ -25,10 +29,15 @@ const WorkoutDetails = ({workout}) => {
 
     return (
         <div className="workout-details">
-            <h4>{workout.title}</h4>
-            <p><strong>Load (lbs): </strong>{workout.load}</p>
-            <p><strong>Reps: </strong>{workout.reps}</p>
-            <p>{formatDistanceToNow(new Date(workout.createdAt), {addSuffix: true})}</p>
+            <Link style={{ textDecoration: 'none' }} to={`/details/${workout.title}`}
+            className={`card ${isHovered ? 'hovered' : ''}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}>
+                    <h4>{workout.title}</h4>
+                    <p><strong>Load (lbs): </strong>{workout.load}</p>
+                    <p><strong>Reps: </strong>{workout.reps}</p>
+                    <p>{formatDistanceToNow(new Date(workout.createdAt), {addSuffix: true})}</p>
+            </Link>
             <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
         </div>
     )

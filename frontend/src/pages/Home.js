@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 import { useAuthContext } from "../hooks/useAuthContext"
+import SearchBar from '@mkyy/mui-search-bar';
 
 import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from "../components/WorkoutForm";
@@ -9,6 +10,8 @@ import API_BASE_URL from "../config";
 const Home = () => {
     const {workouts, dispatch} = useWorkoutsContext()
     const {user} = useAuthContext()
+
+    const [textFieldValue, setTextFieldValue] = useState('')
 
     useEffect(() => {
         const fetchWorkouts = async() => {
@@ -28,16 +31,24 @@ const Home = () => {
     }, [dispatch, user])
 
     return (
-        <div className="home">
-            <div className="workouts">
-                {workouts && workouts.map((w) => (
-                    <WorkoutDetails 
-                        key={w._id}
-                        workout={w}
-                    />
-                ))}
+        <div className="wrapper">
+            <SearchBar
+                value={0}
+                onChange={newValue => setTextFieldValue(newValue)}
+            />
+            <div className="home">
+                <div className="workouts">
+                    {workouts && workouts.filter((w) => {
+                        return w.title.toLowerCase().startsWith(textFieldValue.toLowerCase());
+                    }).map((w) => (
+                        <WorkoutDetails 
+                            key={w._id}
+                            workout={w}
+                        />
+                    ))}
+                </div>
+                <WorkoutForm />
             </div>
-            <WorkoutForm />
         </div>
     )
 }
