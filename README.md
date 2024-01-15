@@ -1,5 +1,8 @@
 # GymBro: Full-Stack MERN Application
 
+![Homepage](https://github.com/MN-Coding/GymBro/blob/master/demo-images/homepage.png)
+![Graph](https://github.com/MN-Coding/GymBro/blob/master/demo-images/graph.png)
+
 ## Overview
 
 GymBro is a comprehensive full-stack MERN (MongoDB, Express.js, React, Node.js) application designed to empower fitness enthusiasts in tracking and visualizing their progress. Whether you're a seasoned gym-goer or just starting your fitness journey, GymBro provides a user-friendly platform to monitor your workouts, set goals, and visualize your achievements over time.
